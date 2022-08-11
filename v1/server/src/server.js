@@ -1,5 +1,15 @@
-const { Client } = require('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
+import express from "express";
+import { Client } from "whatsapp-web.js";
+import qrcode from "qrcode-terminal";
+import { db, collection } from "./models/index.js";
+
+const app = express(); 
+
+app.use(express.json());
+
+db.wabot.start();
+
+collection.message.create({request: "Halo", response: "Halo Juga", isActive: true});
 
 const client = new Client();
 
